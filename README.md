@@ -41,7 +41,7 @@ This project is an implementation of a simple Unix-like shell based on concepts 
 ### 1. Compile
 
 ```bash
-gcc -Wall -Wextra -g src/shell.c -o shell
+gcc -Wall -Wextra -g minishell.c -o minishell
 ```
 
 ### 2. Run
