@@ -8,4 +8,13 @@
 #include <sys/wait.h> // process synchronization 
 #include <sys/types.h> // defines the system data types
 
+#define MAX_INPUT 1024; 
+#define MAX_ARGS 128;
+#define MEX_HISTORY 100;
+#define MAX_PIPES 16;
+
+int main (){
+
+	return 0;
+}
 
