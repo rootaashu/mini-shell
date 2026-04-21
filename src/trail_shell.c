@@ -2,6 +2,11 @@
 #include <stdlib.h>
 
 #define LSH_RL_BUFSIZE 1024
+
+#define LSH_TOK_BUFSIZE 64
+#define LSH_TOK_DELIM "\t\r\n\a"
+
+
 /*
 char *lsh_read_line(void)
 {
@@ -19,6 +24,10 @@ char *lsh_read_line(void)
 	}
 
 */
+char **lsh_split_line(char *line)
+{
+	int bufsize = LSH_TOK_BUFSIZE, POSITION = 0;
+	
 char *lsh_read_line(void)
 {
 	int bufsize = LSH_RL_BUFSIZE ;
