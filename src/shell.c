@@ -42,7 +42,39 @@ static void print_history( void){
 	for (int i=0; i<history_count; i++)
 		printf("%3d  %s/n", i+1, history[i]);
 }
-
+static int builtin_cd(char **args){
+	const char *target = args[1] ? args[1] : getenv("HOME");
+	if (!target) { fprintf(stderr, "cd: HOME not set\n");
+		return 1;}
+	if (chdir(target) != 0){perror("cd");
+		return 1;}
+	return 0;
+}
+static int builtin_echo(char **args){
+	for (int i =1;args[i]; i++){
+		if (i>1)putchar(' ');
+		fputs(args[i], stdout);
+	}
+	putchar('\n');
+	return 0;
+static int builtin_help(void){
+	puts(
+	             "\n  minishell — built-in commands\n"
+        "  ─────────────────────────────────────────────────────\n"
+        "  cd [dir]          Change directory (default: $HOME)\n"
+        "  pwd               Print working directory\n"
+        "  echo [args…]      Print arguments\n"
+        "  history           Show command history\n"
+        "  help              Show this message\n"
+        "  exit [code]       Exit the shell\n"
+        "\n"
+        "  Operators supported:\n"
+        "    |               Pipe (up to 16 stages)\n"
+        "    >  >>  <        Redirect stdout / append / stdin\n"
+        "    &               Run command in background\n"
+    );
+	return 0;
+}
 
 int main (){
 
