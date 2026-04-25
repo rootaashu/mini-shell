@@ -177,7 +177,8 @@ void lsh_loop(void)
 		printf(">");
 		line = lsh_read_line();
 		args = lsh_split_line(line);
-		status = lsh_execute(args);
+		//status = lsh_execute(args);
+		status = lsh_exit(args);
 
 		free(line);
 		free(args);
