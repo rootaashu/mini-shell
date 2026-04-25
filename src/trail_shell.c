@@ -59,7 +59,7 @@ int lsh_exit(char **args)
 #define LSH_RL_BUFSIZE 1024
 
 #define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM "\t\r\n\a"
+#define LSH_TOK_DELIM " \t\r\n\a"
 
 
 /*
@@ -177,8 +177,15 @@ void lsh_loop(void)
 		printf(">");
 		line = lsh_read_line();
 		args = lsh_split_line(line);
-		status = lsh_execute(args);
+	// adding this if statement to see the debug during runtime 
+	if (args[0] != NULL){
+		printf("CMD: %s\n", args[0]);
 		
+		for ( int i =0; args[i] != NULL; i++){
+		  printf("arg[%d] : %s\n",i,args[i]);
+		}
+	}
+	status = lsh_execute(args);	
 
 		free(line);
 		free(args);
