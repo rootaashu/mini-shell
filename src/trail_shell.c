@@ -8,6 +8,21 @@ int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
 
+char *builtin_str[] = {
+	"cd",
+	"help",
+	"exit"
+};
+
+int(*builtin_func[]) (char **) = {
+	&lsh_cd,
+	&lsh_help,
+	&lsh_exit
+};
+int lsh_num_builtins(){
+	return sizeof(builtin_str)
+}
+
 
 
 #define LSH_RL_BUFSIZE 1024
