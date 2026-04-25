@@ -53,7 +53,7 @@ int lsh_help(char **args)
 
 int lsh_exit(char **args)
 {
-	return 1;
+	return 0;
 }
 
 #define LSH_RL_BUFSIZE 1024
