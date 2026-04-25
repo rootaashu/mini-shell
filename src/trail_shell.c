@@ -28,7 +28,7 @@ int lsh_cd(char **args)
 	if (args[1] == NULL){
 		fprintf(stderr, "lsh : expected argument to \"cd\"\n");
 	}else{
-		if chdir(args[1] != 0){
+		if (chdir(args[1]) != 0){
 			perror("lsh");
 		}
 	}
@@ -81,7 +81,7 @@ char *lsh_read_line(void)
 // the above command runs good if I use it for reading the line using getline()
 char **lsh_split_line(char *line)
 {
-	int bufsize = LSH_TOK_BUFSIZE, POSITION = 0;
+	int bufsize = LSH_TOK_BUFSIZE, position = 0;
 	char **tokens = malloc(bufsize * sizeof(char*));
 	char *token;
 	
@@ -192,7 +192,7 @@ int lsh_execute(char **args)
 	}
 	for ( i=0; i < lsh_num_builtins(); i++){
 		if (strcmp(args[0], builtin_str[i]) == 0){
-			return (*builtin_func[i](args);
+			return (*builtin_func[i])(args);
 			}
 		}
 	return lsh_launch(args);
