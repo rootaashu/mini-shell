@@ -1,5 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <string.h>
+
+int lsh_cd(char **args);
+int lsh_help(char **args);
+int lsh_exit(char **args);
+
+
 
 #define LSH_RL_BUFSIZE 1024
 
@@ -7,7 +16,7 @@
 #define LSH_TOK_DELIM "\t\r\n\a"
 
 
-
+/*
 char *lsh_read_line(void)
 {
 	char *line = NULL;
@@ -22,28 +31,8 @@ char *lsh_read_line(void)
 	}
 	return line;
 	}
-
-
-
-token = strtok( line, LSH_TOK_DELIM);
-while (token != NULL){
-	tokens[position] = token;
-	position++;
-
-	if (position >= bufsize){
-		bufsize += LSH_TOK_BUFSIZE;
-		tokens = realloc(tokens, bufsize * sizeof(char*));
-		if (!tokens){
-			fprintf( stderr, "lsh: allocation error\n");
-			exit(EXIT_FAILURE);
-
-		}
-	}
-	token = strtok(NULL, LSH_TOK_DELIM);
-}
-tokens[position] = NULL;
-return tokens ;
-}
+*/
+// the above command runs good if I use it for reading the line using getline()
 char **lsh_split_line(char *line)
 {
 	int bufsize = LSH_TOK_BUFSIZE, POSITION = 0;
@@ -80,6 +69,7 @@ char *lsh_read_line(void)
 		}
 	}
 }
+
 
 void lsh_loop(void)
 {
