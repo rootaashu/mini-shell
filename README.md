@@ -1,4 +1,4 @@
-# 🐚 Mini Unix Shell (C) — Book-Based Implementation
+#  Mini Unix Shell (C) — Book-Based Implementation
 
 A mini Unix shell built in C by following and implementing concepts for basic working shell
 
@@ -8,32 +8,7 @@ A mini Unix shell built in C by following and implementing concepts for basic wo
 
 This project is an implementation of a simple Unix-like shell based on concepts learned from a systems programming book.
 
----
-
-## 🚀 Features
-
-* Execute system commands (`ls`, `pwd`, etc.)
-* Run executables (`./program`)
-* Built-in commands:
-
-  * `cd`
-  * `exit`
-* Input/Output redirection (`<`, `>`)
-* Pipes (`|`)
-* Background execution (`&`)
-* Signal handling (`Ctrl+C`)
-
----
-
-## 🛠️ Tech Stack
-
-* Language: C
-* Concepts:
-
-  * Operating Systems
-  * System Calls
-  * Process Management
-
+I have been working on making a better shell using 2 different types of shell logics, currently my second shell is working and I am still working on the first one to make it work   
 ---
 
 ## ▶️ How to Run
