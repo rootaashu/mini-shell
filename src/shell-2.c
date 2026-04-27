@@ -14,7 +14,7 @@ char *builtin_str[] = {
 	"exit"
 };
 
-int(*builtin_func[]) (char **) = {
+int(*builtin_func[])(char **) = {
 	&lsh_cd,
 	&lsh_help,
 	&lsh_exit
@@ -177,8 +177,8 @@ void lsh_loop(void)
 		printf(">");
 		line = lsh_read_line();
 		args = lsh_split_line(line);
-		//status = lsh_execute(args);
-		status = lsh_exit(args);
+		status = lsh_execute(args);
+		//status = lsh_exit(args);
 
 		free(line);
 		free(args);
@@ -187,6 +187,7 @@ void lsh_loop(void)
 
 int lsh_execute(char **args)
 {
+	/*
 	int i;
 	if(args[0] == NULL){
 		return 1;
@@ -197,6 +198,25 @@ int lsh_execute(char **args)
 			}
 		}
 	return lsh_launch(args);
+	*/
+	pid_t pid;
+	int status;
+
+	pid = fork();
+
+	if(pid == 0){
+		execvp(arg[0], args);
+		perror("exec failed");
+		exit (1);
+	}
+	else if (pid<0){
+		perror("fork failed");
+	}
+	else{
+		waitpid(pid, &status, 0);
+	}
+	return 1;
+
 }
 
 
