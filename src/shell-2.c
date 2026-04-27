@@ -187,10 +187,11 @@ void lsh_loop(void)
 
 int lsh_execute(char **args)
 {
-	/*
+	
 	int i;
 	if(args[0] == NULL){
 		return 1;
+/*
 	}
 	for ( i=0; i < lsh_num_builtins(); i++){
 		if (strcmp(args[0], builtin_str[i]) == 0){
@@ -223,7 +224,21 @@ int lsh_execute(char **args)
 
 
 int main(int argc, char **argv){
-	lsh_loop();
-	return EXIT_SUCCESS;
+	char *line ;
+	char **args;
+	int status =1;
 
-}
+	while(1)
+	       {
+		printf(">>");
+		fflush(stdout);
+
+		line = lsh_read_line();
+		args = lsh_split_line(line);
+
+		 lsh_execute(args);
+
+		free(line);
+		free(args);
+	}
+}	
