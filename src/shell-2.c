@@ -167,6 +167,7 @@ int lsh_launch(char **args)
 	return 1;
 
 }
+
 void lsh_loop(void)
 {
 	char *line;
@@ -191,15 +192,16 @@ int lsh_execute(char **args)
 	int i;
 	if(args[0] == NULL){
 		return 1;
-/*
 	}
+		
+	
 	for ( i=0; i < lsh_num_builtins(); i++){
 		if (strcmp(args[0], builtin_str[i]) == 0){
 			return (*builtin_func[i])(args);
 			}
 		}
 	return lsh_launch(args);
-	*/
+	
 	pid_t pid;
 	int status;
 
@@ -236,9 +238,9 @@ int main(int argc, char **argv){
 		line = lsh_read_line();
 		args = lsh_split_line(line);
 
-		 lsh_execute(args);
-
+	        lsh_execute(args);
+	       }
 		free(line);
 		free(args);
-	}
-}	
+	
+}
