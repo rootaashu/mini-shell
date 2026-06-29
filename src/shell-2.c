@@ -41,6 +41,7 @@ int lsh_cd(char **args)
 int lsh_ls(char **args)
 {
 	printf("This is the statement of the ls function saying it is working ");
+
 	if (args[1] == NULL){
 		fprintf(stderr, "lsh : expected arguments to \"ls\"\n");
 	}else{
@@ -257,8 +258,7 @@ int main(int argc, char **argv){
 		args = lsh_split_line(line);
 
 	        lsh_execute(args);
-	       }
-		free(line);
+	        free(line);
 		free(args);
-	
+	       }
 }
