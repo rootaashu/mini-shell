@@ -37,12 +37,12 @@ int lsh_cd(char **args)
 	}
 	return 1;
 }
-
+/*
 int lsh_ls(char **args)
 {
 	return lsh_launch(args);
 }
-
+*/
 int lsh_help(char **args)
 {
 	int i;
@@ -175,7 +175,10 @@ int lsh_launch(char **args)
 	return 1;
 
 }
-
+int lsh_ls(char **args)
+{
+	return lsh_launch(args);
+}
 void lsh_loop(void)
 {
 	char *line;
