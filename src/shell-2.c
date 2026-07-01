@@ -37,7 +37,7 @@ int lsh_cd(char **args)
 	}
 	return 1;
 }
-
+/*
 int lsh_ls(char **args)
 {
 	printf("This is the statement of the ls function saying it is working ");
@@ -53,7 +53,7 @@ int lsh_ls(char **args)
 
 	
 }
-
+*/
 int lsh_help(char **args)
 {
 	int i;
@@ -72,13 +72,13 @@ int lsh_help(char **args)
 
 int lsh_exit(char **args)
 {
-	return 1;
+	exit(0);
 }
 
 #define LSH_RL_BUFSIZE 1024
 
 #define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM "\t\r\n\a"
+#define LSH_TOK_DELIM " \t\r\n\a"
 
 
 /*
