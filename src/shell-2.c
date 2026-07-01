@@ -37,23 +37,12 @@ int lsh_cd(char **args)
 	}
 	return 1;
 }
-/*
+
 int lsh_ls(char **args)
 {
-	printf("This is the statement of the ls function saying it is working ");
-
-	if (args[1] == NULL){
-		fprintf(stderr, "lsh : expected arguments to \"ls\"\n");
-	}else{
-		if (chdir(args[1]) != 0){
-			perror ("lsh");
-		}
-	}
-	return 1;
-
-	
+	return lsh_launch(args);
 }
-*/
+
 int lsh_help(char **args)
 {
 	int i;
