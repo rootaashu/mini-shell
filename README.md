@@ -22,7 +22,7 @@ gcc -Wall -Wextra -g minishell.c -o minishell
 ### 2. Run
 
 ```bash
-./shell
+./minishell
 ```
 
 ---
