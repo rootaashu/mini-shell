@@ -20,7 +20,7 @@ void lsh_history_init(void)
 
 	if (home == NULL || *home == '\0'){
 		history_path[0] = '\0';
-		return;
+		return 0 ;
 	}
 
 
