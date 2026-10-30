@@ -1,29 +1,58 @@
-#define MAX_HISTORY 100
-#define MAX_COMMAND 256
+#include "history.h"
 
-char history[MAX_HISTORY][MAX_COMMAND];
-int history_count = 0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
 
-void add_history(const char *command)
+
+#include <readline/readline.h>
+#include <readline/history.h>
+
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif 
+static char history_path[PATH_MAX];
+
+void lsh_history_init(void)
 {
-	if (command[0] == '\0')
-		return ;
-	if (history_count < MAX_HISTORY){
-		strcpy(history[history_count], command);
-		history_count++;
+	const char *home = getenv("HOME");
+
+	if (home == NULL || *home == '\0'){
+		history_path[0] = '\0';
+		return;
 	}
+
+
+	int written = snprintf(history_path, sizeof(history_path)," %s/.ashutosh_lsh_history", home );
+
+	if (written <0 || (size_t)written >= sizeof(history_path)){
+		history_path[0] = '\0';
+		return 0;
+	}
+
+	(void)read_history(history_path);
 }
 
-int history_index;
-history_index = history_count;
-
-
-printf("\033[2K\r");
-printf("root@os> %s", history[history_index]);
-
-void show_history(void)
+char *lsh_history_readline(const char *prompt)
 {
-	for(int i=0; i<history_count; i++){
-		printf("%d %s\n", i +1 , history[i]);
+	char *line = readline(prompt);
+
+	if ( line != NULL && line[0] != '\0'){
+		add_history(line);
+		if (history_path[0] != '\0'){
+			(void)write_history(history_path);
+		}
 	}
+
+	return line ;
+}
+
+void lsh_history_cleanup(void)
+{
+	if (history_path[0] != '\0'){
+		(void)write_history(history_path);
+	}
+	clear_history();
+
 }
