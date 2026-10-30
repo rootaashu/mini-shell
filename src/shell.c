@@ -4,6 +4,8 @@
 #include <sys/wait.h>
 #include <string.h>
 
+#include "history.h"
+
 int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
@@ -55,6 +57,9 @@ int lsh_help(char **args)
 
 int lsh_exit(char **args)
 {
+	(void)args;
+	lsh_history_cleanup();
+	
 	exit(0);
 }
 
@@ -234,17 +239,29 @@ int main(int argc, char **argv){
 	char *line ;
 	char **args;
 	int status =1;
+	
+	lsh_history_init();
 
 	while(1)
 	       {
-		printf(">>");
-		fflush(stdout);
 
-		line = lsh_read_line();
+		line = lsh_history_readline(">> ");
+		
+		if (line == NULL)
+		{
+			printf("\n");
+			break;
+		}
+		
 		args = lsh_split_line(line);
 
 	        lsh_execute(args);
-	        free(line);
+	        
+		free(line);
 		free(args);
 	       }
+	lsh_history_cleanup();
+
+	return 0;
+
 }
