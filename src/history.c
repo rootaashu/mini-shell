@@ -20,7 +20,7 @@ void lsh_history_init(void)
 
 	if (home == NULL || *home == '\0'){
 		history_path[0] = '\0';
-		return 0 ;
+		return;
 	}
 
 
@@ -28,7 +28,7 @@ void lsh_history_init(void)
 
 	if (written <0 || (size_t)written >= sizeof(history_path)){
 		history_path[0] = '\0';
-		return 0;
+		return;
 	}
 
 	(void)read_history(history_path);
